@@ -132,6 +132,28 @@ These six screenshots document selected earlier setup and model experiments. The
   <img src="evidence/06_parakeet_cli.png" alt="Parakeet CLI and model setup" width="32%" />
 </p>
 
+
+## Terminal evidence and issue register
+
+The terminal-style exhibits below are **reconstructed from the commands and outputs shared during the work**. They are labelled as reconstructions—not original screen captures. The original six screenshots above remain historical model/setup evidence.
+
+<p align="center">
+  <img src="evidence/terminal/01-python-runtime-discovery.svg" alt="Reconstructed terminal exhibit: Python discovery failure and fix" width="49%" />
+  <img src="evidence/terminal/02-dependency-download-and-verification.svg" alt="Reconstructed terminal exhibit: dependency retry and test verification" width="49%" />
+</p>
+<p align="center">
+  <img src="evidence/terminal/03-small-automatic-language-run.svg" alt="Reconstructed terminal exhibit: Small baseline run" width="49%" />
+  <img src="evidence/terminal/06-medium-benchmark-run.svg" alt="Reconstructed terminal exhibit: Medium matched run" width="49%" />
+</p>
+<p align="center">
+  <img src="evidence/terminal/08-git-identity-and-publication.svg" alt="Reconstructed terminal exhibit: Git identity and push" width="49%" />
+  <img src="evidence/terminal/10-cleanup-lock-and-restart.svg" alt="Reconstructed terminal exhibit: Windows folder lock and restart" width="49%" />
+</p>
+
+- [Complete issue register](docs/issue-register.md)
+- [All 14 reconstructed terminal exhibits](evidence/terminal/README.md)
+- [Full reconstructed command transcript](evidence/terminal/command-transcript.md)
+
 ## Repository map
 
 | Path | Purpose |

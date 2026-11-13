@@ -228,25 +228,9 @@ Do not delete Git, Python, VS Code, or unrelated development environments. Befor
 The local project directory itself can be deleted once its public repository contents are verified and the final cleanup checklist has been completed.
 
 
-## Experiment 4 — Faster-Whisper Medium, automatic language, VAD off — run completed, metrics pending
+## Experiment 4 — preliminary completion note superseded
 
-**Run date:** 2026-11-13  
-**Result folder name:** test12_medium_20261113_165725_692132  
-**Model:** Systran/faster-whisper-medium  
-**Resolved model commit:** 08e178d48790749d25932bbc082711ddcfdfbc4f  
-**Configuration:** CPU, requested INT8, automatic language detection, VAD off, maximum audio duration 900 seconds.  
-**Input:** Same original 731.74-second M4A recording used for the Small experiments; no audio modification.
-
-The Medium model download completed successfully. The model file was approximately 1.53 GB. The evaluator subsequently printed its completion message and created the result directory.
-
-The console also emitted two non-fatal Hugging Face warnings:
-- hf_xet was not installed, so the regular HTTP download path was used.
-- Windows symlink support was unavailable, so Hugging Face used its less space-efficient cache fallback.
-
-**Status:** The inference run completed and result directory was created. Its metadata.json and transcript.txt have not yet been inspected in this log. No Medium timing, memory, CPU, segment-count, or qualitative transcript conclusion is claimed until those files are reviewed.
-
-**Next action:** Inspect the result directory contents, metadata.json, and transcript.txt. Compare Medium against Small using the same input and VAD-off/automatic-language configuration. Record subjective differences separately from formal WER/CER; no reference transcript has been provided.
-
+The initial note that Medium metrics were pending was written immediately after the model run completed. It was superseded after metadata.json and transcript.txt were inspected. The verified measurements and qualitative caveats are recorded in the following Experiment 4 entry and in results/results.md.
 
 ## Experiment 4 — Faster-Whisper Medium, automatic language, VAD off
 
@@ -294,3 +278,61 @@ Medium took approximately 2.07 times as long and used approximately 2.49 times t
 **Current conclusion:** Small is faster and more memory-efficient. Medium may offer useful differences in wording/detail, but its accuracy advantage is unproven. This is a compute-versus-output comparison, not a formal accuracy ranking.
 
 **Next action:** Ask the user to compare specific sections they know from the lecture, or prepare a short manually verified reference segment. Keep VAD off and keep the original recording unchanged for further model comparisons.
+
+
+---
+
+## GitHub source publication and repository verification — 2026-11-13
+
+### Sanitized source package
+
+A temporary source staging directory and a 22,401-byte ZIP were created. The staged package contained the evaluator, tests, PowerShell setup/runner scripts, pinned requirements, and documentation placeholders. The audio/model directories were not part of the explicit source-file staging list; private audio and downloaded model weights were not published.
+
+The repository clone was tested before commit:
+- Clean-clone test suite: **28 passed in 0.35 seconds**.
+- Explicit Git staging contained 16 files: 1,200 insertions and 11 deletions.
+- `git diff --cached --check` passed.
+
+Git emitted LF-to-CRLF line-ending warnings while staging in Windows. The whitespace check succeeded; these were not commit failures.
+
+### Git identity and first push
+
+The first source commit failed because Git author identity was not configured in the fresh clone. The identity was set **locally to that repository**:
+- user.name: Nivesh Patro
+- user.email: 93911786+nytro-gg@users.noreply.github.com
+
+The source commit then succeeded as `44469d3`. Git requested browser authentication during push; browser authentication was completed and the push succeeded:
+- `8d7bc6f..44469d3  main -> main`
+- Final local status after push: `## main...origin/main`
+
+No global Git author identity was changed.
+
+### Package checksum correction
+
+The independent package audit detected that the initial SHA256SUMS manifest did not exactly match the packaged archive: some listed entries were omitted from the archive and the packaged setup script hash differed. A corrected manifest was included with the source publication. The manifest hashes the listed source files and does not claim to hash the ZIP archive.
+
+## Windows cleanup and directory-lock issue — 2026-11-13
+
+The first recursive Remove-Item attempt failed because Windows reported that the original project directory was being used by another process. The PowerShell block nevertheless printed a completion message because the non-terminating deletion error was not checked. A subsequent Test-Path showed the outer project directory still existed.
+
+The nested project directory was then confirmed empty (zero items), but Windows still refused to remove the directory because a handle remained open. The user restarted Windows and reran the guarded deletion script with `-ErrorAction Stop`. The final output was:
+- `Old project exists: False`
+
+The separate GitHub clone was checked independently and was not part of the deletion target. A user-level `.cache` listing had returned no entries at the time of the earlier check; this does not establish that every application cache elsewhere on the PC was empty.
+
+## Separate repository and Desktop clone — 2026-11-13
+
+The user's LinkedIn already referenced the earlier `local-speech-model-evaluation` repository. The user clarified that the new ASR research should be a wholly separate project.
+
+An interim portfolio refresh had been applied to the old repository during the misunderstanding. Its main tree was subsequently restored to the pre-November baseline tree from commit `3ae319563681cc2a56ad560f02015dc9f4207398`, with a new restoration commit `e5335f5917959098280c587737b719525cd5e3ff`. The original URL and historical commits were retained.
+
+The new public repository `nytro-gg/advanced-local-asr-benchmark` was created separately and populated with the evaluator, setup/runner scripts, tests, benchmark reports, issue documentation, and six historical screenshots. Its first full project commit is `f47f8f9f5c407625d971c97f58c81c39beff486b`.
+
+The local clones were organized under `Desktop\Local Speech Model\V2`. An initial pull attempt still used the old Downloads path and failed with `No such file or directory`. Updating the PowerShell variables to the Desktop location corrected it:
+- Original repository clone fast-forwarded to the restored tree.
+- New repository clone downloaded 47 Git objects (about 1.74 MiB).
+- New clone status: `## main...origin/main`.
+
+## Terminal evidence reconstruction — 2026-11-13
+
+Fourteen SVG terminal-style exhibits were added under `evidence/terminal/`, alongside a text command transcript and a consolidated issue register. These are explicitly labelled **RECONSTRUCTED — NOT LIVE CAPTURE**. Exact user-shared command/output pairs are reproduced where available; notebook-only outcomes are labelled as summaries. The original VAD diagnostic command text was not preserved, so only its recorded outputs are shown. No fake live terminal captures were created.

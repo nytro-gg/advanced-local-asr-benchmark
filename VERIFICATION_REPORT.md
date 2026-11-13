@@ -39,3 +39,12 @@ A separate default whole-file VAD experiment retained approximately 3.84 seconds
 - No human-verified reference transcript was supplied. WER/CER are unavailable, and subjective impressions must not be presented as formal accuracy scores.
 - GPU benchmarking, Large-v3 evaluation, and broader multilingual/noise/diarization testing are outside the verified scope.
 - Screenshots in `evidence/` document selected earlier experiments. They are not screenshots of the matched November Small/Medium terminal runs.
+
+
+## Troubleshooting and terminal evidence
+
+- The consolidated issue register is at [docs/issue-register.md](docs/issue-register.md).
+- Fourteen terminal-style exhibits are in [evidence/terminal/](evidence/terminal/README.md).
+- A text-form command transcript is in [evidence/terminal/command-transcript.md](evidence/terminal/command-transcript.md).
+
+**Authenticity note:** The terminal-style SVGs are reconstructions from user-shared command/output text and the lab notebook. They are labelled “RECONSTRUCTED · NOT LIVE CAPTURE”; they are not represented as original screenshots. The six PNGs in the top-level evidence directory are historical screenshots from earlier experiments, not captures of the November matched Small/Medium runs.
